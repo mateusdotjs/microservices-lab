@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { LoggingServiceService } from './logging-service.service';
+import { EventPattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class LoggingServiceController {
-  constructor(private readonly loggingServiceService: LoggingServiceService) {}
-
-  @Get()
-  getHello(): string {
-    return this.loggingServiceService.getHello();
+  @EventPattern()
+  handleLog(
+    @Payload() data: { action: string; payload: any; timestamp: Date },
+  ) {
+    console.log(`[LOG] ${data.action}`, data.payload);
   }
 }
