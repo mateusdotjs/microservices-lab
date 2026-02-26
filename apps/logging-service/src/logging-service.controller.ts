@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { MESSAGES } from '@app/shared';
+import { Controller } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class LoggingServiceController {
-  @EventPattern()
+  @EventPattern(MESSAGES.LOG_EVENT)
   handleLog(
     @Payload() data: { action: string; payload: any; timestamp: Date },
   ) {
