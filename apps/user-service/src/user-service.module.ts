@@ -4,6 +4,7 @@ import { UserServiceService } from './user-service.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { User } from './models/user.model';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
       inject: [ConfigService],
     }),
+    SequelizeModule.forFeature([User]),
     ClientsModule.registerAsync([
       {
         imports: [ConfigModule],

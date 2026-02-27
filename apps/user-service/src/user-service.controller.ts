@@ -8,8 +8,8 @@ export class UserServiceController {
   constructor(private readonly userServiceService: UserServiceService) {}
 
   @MessagePattern(MESSAGES.USER_CREATE)
-  create(@Payload() createUserDto: CreateUserDto) {
-    return this.userServiceService.create(createUserDto);
+  create(@Payload() data: { createUserDto: CreateUserDto }) {
+    return this.userServiceService.create(data.createUserDto);
   }
 
   @MessagePattern(MESSAGES.USER_FIND_ALL)
@@ -18,7 +18,7 @@ export class UserServiceController {
   }
 
   @MessagePattern(MESSAGES.USER_FIND_ONE)
-  findOne(@Payload() id: number) {
-    return this.userServiceService.findOne(id);
+  findOne(@Payload() data: { id: number }) {
+    return this.userServiceService.findOne(data.id);
   }
 }
