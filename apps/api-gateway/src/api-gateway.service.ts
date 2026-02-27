@@ -10,7 +10,7 @@ export class ApiGatewayService {
   ) {}
 
   createUser(createUserDto: CreateUserDto) {
-    return this.userServiceClient.send(MESSAGES.USER_CREATE, createUserDto);
+    return this.userServiceClient.send(MESSAGES.USER_CREATE, { createUserDto });
   }
 
   findAllUsers() {
